@@ -360,12 +360,18 @@ static void addVert(float x, float y, float z, float sclz, struct vertbuf* buf) 
   memcpy(buf->vert2, buf->vert3, 3*sizeof(float));
   buf->vert3[0] = x;
   buf->vert3[1] = y;
-  buf->vert3[2] = z*sclz;
-  buf->nvert++;
+  if (z != mjMAXVAL) {
+    buf->vert3[2] = z*sclz;
+    buf->nvert++;
+  } else {
+    buf->vert3[2] = mjMAXVAL;
+    buf->nvert++;
+    return;
+  }
 
   // triangle ready
-  if (buf->nvert >= 3 && buf->vert1[2] != mjMAXVAL / sclz &&
-      buf->vert2[2] != mjMAXVAL / sclz && buf->vert3[2] != mjMAXVAL / sclz) {
+  if (buf->nvert >= 3 && buf->vert1[2] != mjMAXVAL &&
+      buf->vert2[2] != mjMAXVAL && buf->vert3[2] != mjMAXVAL) {
     // compensate for alternating orientation
     if (buf->nvert%2) {
       mjr_makeNormal(normal, buf->vert1, buf->vert2, buf->vert3);
