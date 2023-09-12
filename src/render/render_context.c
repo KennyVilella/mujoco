@@ -444,7 +444,7 @@ void mjr_uploadHField(const mjModel* m, const mjrContext* con, int hfieldid) {
     }
   }
   glEnd();
-
+/*
   // render sides as quads
   glBegin(GL_QUADS);
   for (int r=0; r < nr-1; r++) {
@@ -493,7 +493,7 @@ void mjr_uploadHField(const mjModel* m, const mjrContext* con, int hfieldid) {
       glVertex3f(sz[0]*((c+1)/width-1.0f), sz[1]*((r+0)/height-1.0f), -sz[3]);
     }
   }
-
+*/
   glEnd();
 
   // end list
