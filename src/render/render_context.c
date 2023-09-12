@@ -364,8 +364,8 @@ static void addVert(float x, float y, float z, float sclz, struct vertbuf* buf) 
   buf->nvert++;
 
   // triangle ready
-  if (buf->nvert >= 3 && buf->vert1[2] != mjMAXVAL &&
-      buf->vert2[2] != mjMAXVAL && buf->vert3[2] != mjMAXVAL) {
+  if (buf->nvert >= 3 && buf->vert1[2] != mjMAXVAL / sclz &&
+      buf->vert2[2] != mjMAXVAL / sclz && buf->vert3[2] != mjMAXVAL / sclz) {
     // compensate for alternating orientation
     if (buf->nvert%2) {
       mjr_makeNormal(normal, buf->vert1, buf->vert2, buf->vert3);
